@@ -1,0 +1,15 @@
+@model NotesApp.Models.Note
+<h2>@Model.Title</h2>
+<p class="muted">id=@Model.Id, owner=@Model.OwnerId, utworzono=@Model.CreatedAt</p>
+<div>
+    @* [OWASP A05 - Stored XSS] tresc renderowana bez kodowania - celowo w wariancie bazowym.
+       Wariant utwardzony uzyje @@Model.Body (automatyczne kodowanie Razor). *@
+    @Html.Raw(Model.Body)
+</div>
+<p>
+    <a href="/notes/@Model.Id/edit">Edytuj</a>
+    <form method="post" action="/notes/@Model.Id/delete" style="display:inline">
+        @Html.AntiForgeryToken()
+        <button type="submit">Usun</button>
+    </form>
+</p>

@@ -1,0 +1,10 @@
+@model List<NotesApp.Models.Note>
+<h2>Panel administratora - wszystkie notatki</h2>
+<p class="muted">Dostep tylko dla zalogowanych (w wariancie bazowym brak kontroli roli).</p>
+<table border="1" cellpadding="4">
+    <tr><th>id</th><th>tytul</th><th>wlasciciel</th></tr>
+    @foreach (var n in Model)
+    {
+        <tr><td>@n.Id</td><td>@n.Title</td><td>@n.Owner?.Email</td></tr>
+    }
+</table>

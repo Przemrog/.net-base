@@ -1,0 +1,9 @@
+@model NotesApp.Models.ApplicationUser
+<h2>Profil</h2>
+<p>Email: @Model?.Email</p>
+@if (!string.IsNullOrEmpty(Model?.AvatarPath)) { <img src="@Model.AvatarPath" width="120" /> }
+<form method="post" action="/profile" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="file" name="avatar" />
+    <button type="submit">Wgraj awatar</button>
+</form>

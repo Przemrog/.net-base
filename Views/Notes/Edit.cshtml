@@ -1,0 +1,8 @@
+@model NotesApp.Models.Note
+<h2>Edycja notatki</h2>
+<form method="post" action="/notes/@Model.Id/edit">
+    @Html.AntiForgeryToken()
+    <input name="title" value="@Model.Title" />
+    <textarea name="body" rows="6">@Model.Body</textarea>
+    <button type="submit">Zapisz</button>
+</form>

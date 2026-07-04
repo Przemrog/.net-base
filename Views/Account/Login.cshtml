@@ -1,0 +1,10 @@
+<h2>Logowanie</h2>
+@if (ViewBag.Error != null) { <p class="err">@ViewBag.Error</p> }
+<form method="post" action="/login">
+    @Html.AntiForgeryToken()
+    <input name="email" placeholder="email" value="alice@local" />
+    <input name="password" type="password" placeholder="haslo" value="alice123" />
+    <button type="submit">Zaloguj</button>
+</form>
+<p class="muted">Konta testowe: admin@local/admin123, alice@local/alice123, bob@local/bob123</p>
+<a href="/register">Rejestracja</a>

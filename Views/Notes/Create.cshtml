@@ -1,0 +1,7 @@
+<h2>Nowa notatka</h2>
+<form method="post" action="/notes">
+    @Html.AntiForgeryToken()
+    <input name="title" placeholder="tytul" />
+    <textarea name="body" rows="6" placeholder="tresc"></textarea>
+    <button type="submit">Zapisz</button>
+</form>

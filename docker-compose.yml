@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: notes
+      POSTGRES_PASSWORD: notes
+      POSTGRES_DB: notesdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  web:
+    build: .
+    depends_on:
+      - db
+    environment:
+      # W wariancie BAZOWYM srodowisko Development => szczegolowe strony bledu (A02/A10)
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: "Host=db;Port=5432;Database=notesdb;Username=notes;Password=notes"
+      Jwt__Key: "dev-only-insecure-signing-key-change-me-please-0123456789"
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:

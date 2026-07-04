@@ -1,0 +1,18 @@
+@model List<NotesApp.Models.Note>
+<h2>Moje notatki</h2>
+<form method="get" action="/notes/search">
+    <input name="q" placeholder="szukaj po tytule" value="@ViewBag.Query" />
+    <button type="submit">Szukaj</button>
+</form>
+<ul>
+@foreach (var n in Model)
+{
+    <li><a href="/notes/@n.Id">@n.Title</a> <span class="muted">(id=@n.Id, owner=@n.OwnerId)</span></li>
+}
+</ul>
+<h3>Import z URL</h3>
+<form method="post" action="/notes/import">
+    @Html.AntiForgeryToken()
+    <input name="url" placeholder="https://..." />
+    <button type="submit">Importuj</button>
+</form>

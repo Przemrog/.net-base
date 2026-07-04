@@ -1,0 +1,8 @@
+<h2>Rejestracja</h2>
+@if (ViewBag.Error != null) { <p class="err">@ViewBag.Error</p> }
+<form method="post" action="/register">
+    @Html.AntiForgeryToken()
+    <input name="email" placeholder="email" />
+    <input name="password" type="password" placeholder="haslo" />
+    <button type="submit">Zarejestruj</button>
+</form>
